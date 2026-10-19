@@ -1,3 +1,4 @@
+
 services:
   postgres_db:
     image: postgres:17-alpine
@@ -14,7 +15,8 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
-web_api:
+
+  web_api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=postgres_db;Port=5432;Database=appdb;Username=admin;Password=SecretPassword123!
@@ -25,6 +27,7 @@ web_api:
 
 volumes:
   pgdata_vol:
+
 networks:
   app-network:
     driver: bridge
